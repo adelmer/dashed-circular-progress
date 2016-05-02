@@ -174,7 +174,7 @@ public class DashedCircularProgress extends RelativeLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if(getResources().getDisplayMetrics().densityDpi<=240) {
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec + heightNormalittation+padingTop);
+            super.onMeasure(widthMeasureSpec, widthMeasureSpec+heightNormalittation);
         }
         else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec + heightNormalittation);
