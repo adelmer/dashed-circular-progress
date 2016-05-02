@@ -134,9 +134,9 @@ public class DashedCircularProgress extends RelativeLayout {
     }
 
     private void initPainters() {
-        progressPainter = new ProgressPainterImp(progressColor, min, max, progressStrokeWidth);
+        progressPainter = new ProgressPainterImp(progressColor, min, max, progressStrokeWidth, getResources().getDisplayMetrics());
         externalCirclePainter = new ExternalCirclePainterImp(externalColor);
-        internalCirclePainter = new InternalCirclePainterImp(internalBaseColor);
+        internalCirclePainter = new InternalCirclePainterImp(internalBaseColor, getResources().getDisplayMetrics());
         iconPainter = new IconPainter(image);
     }
 
@@ -174,7 +174,7 @@ public class DashedCircularProgress extends RelativeLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if(getResources().getDisplayMetrics().densityDpi<=240) {
-            super.onMeasure(widthMeasureSpec, widthMeasureSpec+heightNormalittation);
+            super.onMeasure(widthMeasureSpec, widthMeasureSpec+(heightNormalittation*2)+padingTop);
         }
         else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec + heightNormalittation);

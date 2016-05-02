@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.DisplayMetrics;
 
 /**
  * @author Adrián García Lomas
@@ -25,12 +26,14 @@ public class ProgressPainterImp implements ProgressPainter {
     private float max;
     private int width;
     private int height;
+    private DisplayMetrics metrics;
 
-    public ProgressPainterImp(int color, float min, float max, int progressStrokeWidth) {
+    public ProgressPainterImp(int color, float min, float max, int progressStrokeWidth, DisplayMetrics metrics) {
         this.color = color;
         this.min = min;
         this.max = max;
         this.internalStrokeWidth = progressStrokeWidth;
+        this.metrics = metrics;
         init();
     }
 
@@ -52,6 +55,9 @@ public class ProgressPainterImp implements ProgressPainter {
     private void initInternalCircle() {
         progressCircle = new RectF();
         padding = internalStrokeWidth * 1.7f;
+        if(metrics!=null && metrics.densityDpi<=240) {
+            padding = internalStrokeWidth * 1.f;
+        }
         progressCircle.set(padding, padding + marginTop, width - padding, height - padding);
     }
 

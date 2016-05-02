@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.DisplayMetrics;
 
 /**
  * @author Adrián García Lomas
@@ -21,9 +22,11 @@ public class InternalCirclePainterImp implements InternalCirclePainter {
     private int dashWith = 5;
     private int dashSpace = 8;
     private float marginTop = 45;
+    private DisplayMetrics metrics;
 
-    public InternalCirclePainterImp(int color) {
+    public InternalCirclePainterImp(int color, DisplayMetrics metrics) {
         this.color = color;
+        this.metrics = metrics;
         init();
     }
 
@@ -44,6 +47,9 @@ public class InternalCirclePainterImp implements InternalCirclePainter {
     private void initExternalCircle() {
         internalCircle = new RectF();
         float padding = internalStrokeWidth * 1.7f;
+        if(metrics!=null && metrics.densityDpi<=240) {
+            padding = internalStrokeWidth * 1.f;
+        }
         internalCircle.set(padding, padding + marginTop, width - padding, height - padding);
     }
 
