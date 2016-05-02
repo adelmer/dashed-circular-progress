@@ -44,7 +44,7 @@ public class InternalCirclePainterImp implements InternalCirclePainter {
     private void initExternalCircle() {
         internalCircle = new RectF();
         float padding = internalStrokeWidth * 1.7f;
-        internalCircle.set(padding, padding + marginTop, width - padding, height - padding);
+        internalCircle.set(padding, padding + marginTop, width - padding, width - padding);
     }
 
     @Override
