@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -172,7 +173,12 @@ public class DashedCircularProgress extends RelativeLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec + heightNormalittation);
+        if(getResources().getDisplayMetrics().densityDpi<=240) {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec + heightNormalittation+padingTop);
+        }
+        else {
+            super.onMeasure(widthMeasureSpec, heightMeasureSpec + heightNormalittation);
+        }
     }
 
     public void setOnValueChangeListener(OnValueChangeListener valueChangeListener) {
